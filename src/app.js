@@ -10,7 +10,7 @@ export const app = express()
 app.use(cookieParser())
 app.use(express.json())
 
-app.use(cors({origin:"https://mis-historias-front-end.vercel.app",credentials:true}));
+app.use(cors({origin:"https://mis-historias-front-end.vercel.app:400" || "https://mis-historias-front-end.vercel.app",credentials:true}));
 app.use(authRouter)
 app.use(uploadImg)
 app.use(morgan("dev"))
