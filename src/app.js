@@ -5,13 +5,13 @@ import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
-export const app = express()
+export const app = express() 
 
 app.use(cookieParser())
 app.use(express.json())
 
 app.use(cors({
-    origin: "https://mis-historias-front-end.vercel.app",
+    
     credentials:true
   }));
 app.use(authRouter)
