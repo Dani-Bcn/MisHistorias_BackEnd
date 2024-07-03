@@ -26,7 +26,7 @@ router.post(
 
 export const createBook = async (req, res) => {
   const { values, imageBook } = req.body;
-  const {title, description,genre, dataUser} = values
+  const {title, description,genre} = values
   console.log(req.user);
   try {
     const isMatch = await Book.findOne({ title });
@@ -78,12 +78,14 @@ export const getBook = async (req, res) => {
 };
 
 export const deleteBook = async (req, res) => {
-  const bookFound = await Book.findByIdAndDelete(req.params.id);
+  const userFound = await User.findById(req.user.id);
+  console.log(req.params, userFound)
+const bookFound = await Book.findByIdAndDelete(req.params.id);
   if (!bookFound) {
     res.json({ message: "No se han encontrado libros" });
   } else {
     res.json({ message: "Libro eliminado" });
-  }
+  }  
 };
 
 export const editBook = async (req, res) => {
