@@ -98,9 +98,9 @@ export const editUser = async (req, res) => {
   const isMatch = await User.findOne({ email });
 
   if (isMatch) {
-    res.send("Correo ya registrado" );
+    res.send("Correo ya registrado");
   } else {
-    res.json({isMatch} );
+    res.json({ isMatch });
     const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
@@ -111,14 +111,14 @@ export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");
-  res.json({userFound})
+  res.json({ userFound });
 };
 
 export const addBook = async (req, res, next) => {
   const { userId, bookId } = req.params;
   try {
     const user = await User.findById(userId);
-    const isMatch = user.booksLibrary.includes(bookId);
+    const isMatch = user.booksLibrary.includes(bookId); // Si en la array existe el elemento
     if (isMatch) {
       res.json({ message: "Este título ya está en tu biblioteca" });
     } else {
@@ -131,4 +131,17 @@ export const addBook = async (req, res, next) => {
     next(error);
   }
 };
+
+export const removeBookLibrary = async (req, res, next) => {
+  const { userId, bookId } = req.params;
+  try {
+    const user = await User.findById(userId);
+    user.booksLibrary.splice(user.booksLibrary.indexOf(bookId), 1);// Elimina  desde el índice indicado (splice(indexOf,1))
+    res.send(user.booksLibrary);
+    await user.save();// actualizar y guardar user
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default router;

@@ -42,6 +42,10 @@ export const createBook = async (req, res) => {
           lastName: userFound.lastName,
           userId: userFound._id,
         },
+        rating:0,
+        numVotes:0,
+        reCountVotes:0,
+        idUserVote:[],
         imageUrl: imageBook,
       });
       newBook.save();
@@ -105,6 +109,9 @@ export const booksUser = async (req, res) => {
     res.json({ booksFound });
   }
 };
+
+
+
 
 export const savePages = async (req, res) => {
   const { chapter, text } = await req.body;

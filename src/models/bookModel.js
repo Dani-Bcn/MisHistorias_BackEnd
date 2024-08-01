@@ -42,14 +42,22 @@ const bookModel = new mongoose.Schema(
     rating: {
       type: Number,
     },
-    chapters: [     
-      { 
-        number:{type:String},
-        title:{type:String},
-        text: {type:String},
-      
+
+    numVotes: {
+      type: Number,
+    },
+    reCountVotes: {
+      type: Number,
+    },
+
+    idUserVote: [],
+    chapters: [
+      {
+        number: { type: String },
+        title: { type: String },
+        text: { type: String },
       },
-        { timestamps: true }
+      { timestamps: true },
     ],
     imageUrl: {
       type: String,

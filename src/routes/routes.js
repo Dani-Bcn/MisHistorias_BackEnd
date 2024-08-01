@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { registerUser, loginUser ,logoutUser ,profile,addBook ,getAllUsers, editUser} from "../controllers/userControllers.js";
+import { registerUser, loginUser ,logoutUser ,profile,addBook ,getAllUsers, editUser } from "../controllers/userControllers.js";
 import { authRequired } from "../midlewares/validateToken.js";
 import { createBook ,getAllBooks,getBook,deleteBook,editBook, booksUser, savePages } from "../controllers/bookControllers.js";
 import { addImg } from "../controllers/imgControllers.js";
-
+import { removeBookLibrary } from "../controllers/userControllers.js";
 
 const router = Router();
-
+router.put("/api/removeBookLibrary/:userId/:bookId", removeBookLibrary);
 router.post("/api/registerUser", registerUser);
 router.post("/api/logoutUser",logoutUser);
 router.put("/api/editUser/:id", authRequired,editUser);
