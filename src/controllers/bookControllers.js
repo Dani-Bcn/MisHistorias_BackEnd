@@ -1,35 +1,20 @@
 import Book from "../models/bookModel.js";
 import User from "../models/userModel.js";
 import Page from "../models/pageModel.js";
-import fileUpload from "../cloudinary.config.js";
 import { Router } from "express";
 
 const router = Router();
-
-router.post(
-  "/api/uploadImg",
-  fileUpload.single("imageUrl"),
-  async (req, res) => {
-    if (!req.file) {
-      return;
-    }
-    try {
-      res.json({ fileUrl: req.file.path });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
 
 export const createBook = async (req, res) => {
   const { values, imageBook } = req.body;
   const { title, description, genre } = values;
   console.log(req.user);
   try {
+
     const isMatch = await Book.findOne({ title });
     const userFound = await User.findById(req.user.id);
-
     console.log(isMatch);
+
     if (isMatch) {
       res.send("LIbro ya registrado");
     } else {
@@ -37,6 +22,7 @@ export const createBook = async (req, res) => {
         title,
         description,
         genre,
+        comments:[],
         dataUser: {
           userName: userFound.userName,
           lastName: userFound.lastName,
@@ -46,6 +32,7 @@ export const createBook = async (req, res) => {
         numVotes:0,
         reCountVotes:0,
         idUserVote:[],
+        idUserComments:[],
         imageUrl: imageBook,
       });
       newBook.save();
@@ -110,13 +97,10 @@ export const booksUser = async (req, res) => {
   }
 };
 
-
-
-
 export const savePages = async (req, res) => {
   const { chapter, text } = await req.body;
   res.send(newPage);
-  const newPage = await new Page({
+  const newPage =  new Page({
     chapter: chapter,
     text: text,
   });

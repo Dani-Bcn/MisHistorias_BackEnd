@@ -3,7 +3,8 @@ import fileUpload from "../cloudinary.config.js";
 import { createToken } from "../token/createToken.js";
 import Crypt from "bcryptjs";
 import { Router } from "express";
-
+import { v2 as cloudinary } from "cloudinary";
+import { extractPublicId } from "cloudinary-build-url";
 const router = Router();
 
 router.post(
@@ -20,6 +21,19 @@ router.post(
     }
   }
 );
+
+export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudinary cuando eliminas el libro
+  const { coco } = req.body; // coco llega como objeto, {coco:url de la imagen}, ejemplo : {coco:"https..."}
+  console.log(coco);
+  const publicId = extractPublicId(coco); // extractPublicId => Extae el id_publico de la imagen através de de la url de la imagen de cloundinary
+  console.log(publicId);
+  try {
+    const coco = await cloudinary.uploader.destroy(publicId); // Elimina la imagen de Cloudinary através de su id_ publico
+    res.send(coco);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const registerUser = async (req, res) => {
   const { values, imageUser } = req.body;
@@ -136,9 +150,9 @@ export const removeBookLibrary = async (req, res, next) => {
   const { userId, bookId } = req.params;
   try {
     const user = await User.findById(userId);
-    user.booksLibrary.splice(user.booksLibrary.indexOf(bookId), 1);// Elimina  desde el índice indicado (splice(indexOf,1))
+    user.booksLibrary.splice(user.booksLibrary.indexOf(bookId), 1); // Elimina  desde el índice indicado (splice(indexOf,1))
     res.send(user.booksLibrary);
-    await user.save();// actualizar y guardar user
+    await user.save(); // actualizar y guardar user
   } catch (error) {
     next(error);
   }

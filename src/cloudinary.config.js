@@ -1,9 +1,9 @@
-  import {v2 as cloudinary} from 'cloudinary';
+import {v2 as cloudinary} from 'cloudinary';
 import  { CloudinaryStorage } from "multer-storage-cloudinary"
 import multer from 'multer';
 import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config() 
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_NAME, 
@@ -15,9 +15,8 @@ cloudinary.config({
 const storage = new CloudinaryStorage({  
   cloudinary,
   params: {
-    allowed_formats: ["jpg", "png","jpeg"],
-    folder: "imgUsers" // The name of the folder in cloudinary
-    // resource_type: "raw", // => this is in case you want to upload other types of files, not just images
+    allowed_formats: ["jpg", "png", "jpeg"],
+    folder: "Img_Mis_Historias"      // Nombre carpeta cloudinary
   } 
 });
 

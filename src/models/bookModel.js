@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { string } from "zod";
 
 const bookModel = new mongoose.Schema(
   {
@@ -57,8 +58,16 @@ const bookModel = new mongoose.Schema(
         title: { type: String },
         text: { type: String },
       },
-      { timestamps: true },
     ],
+    comments: [
+      {
+       
+        user: { type: String },
+        text: { type: String },
+        update: { month: { type: String }, year: { type: String } },
+      },
+    ],
+    idUserComments:[],
     imageUrl: {
       type: String,
     },

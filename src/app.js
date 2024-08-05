@@ -1,6 +1,7 @@
 import express from "express"
 import authRouter from "./routes/routes.js"
 import uploadImg from "./controllers/userControllers.js"
+import deleteImg from "./controllers/userControllers.js"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import cors from "cors"
@@ -15,6 +16,7 @@ app.use(cors({
 }));
 app.use(authRouter)
 app.use(uploadImg)
+app.use(deleteImg)
 app.use(morgan("dev"))
 
 

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { registerUser, loginUser ,logoutUser ,profile,addBook ,getAllUsers, editUser } from "../controllers/userControllers.js";
+import { registerUser, loginUser ,logoutUser ,profile,addBook ,getAllUsers, editUser, deleteImage } from "../controllers/userControllers.js";
 import { authRequired } from "../midlewares/validateToken.js";
 import { createBook ,getAllBooks,getBook,deleteBook,editBook, booksUser, savePages } from "../controllers/bookControllers.js";
-import { addImg } from "../controllers/imgControllers.js";
+
 import { removeBookLibrary } from "../controllers/userControllers.js";
 
 const router = Router();
@@ -20,7 +20,8 @@ router.delete("/api/deleteBook/:id", authRequired,deleteBook);
 router.put("/api/editBook/:id", authRequired,editBook);
 router.get("/api/booksUser", authRequired,booksUser);
 router.put("/api/addBook/:userId/:bookId", authRequired, addBook);
-router.post("/api/addImg",  addImg);
 router.post("/api/savePage",  savePages);
+router.post("/api/deleteImg", deleteImage)
+  
 
 export default router;
