@@ -11,7 +11,7 @@ export const app = express()
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-  origin:"https://mis-historias-front-end.vercel.app",
+  origin:"http://localhost:8000",
   credentials:true
 }));
 app.use(authRouter)
