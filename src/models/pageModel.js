@@ -12,6 +12,9 @@ const pageModel = new mongoose.Schema(
       require: true,
       trim: true,
     },
+    
+      sig:{type:String}
+    
   },
   { timestamps: true }
 );
