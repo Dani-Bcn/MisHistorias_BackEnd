@@ -5,7 +5,7 @@ export function createToken(payload) {
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
-      TOKEN_SECRET, 
+      "user_123456", 
       {
         expiresIn: "1d",
       },
