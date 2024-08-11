@@ -36,6 +36,7 @@ export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudina
 };
 
 export const registerUser = async (req, res) => {
+  
   const { values, imageUser } = req.body;
   const { userName, lastName, email, password } = values;
 
