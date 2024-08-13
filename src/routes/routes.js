@@ -10,7 +10,7 @@ router.put("/api/removeBookLibrary/:userId/:bookId", removeBookLibrary);
 router.post("/api/registerUser", registerUser);
 router.post("/api/logoutUser",logoutUser);
 router.put("/api/editUser/:id", authRequired,editUser);
-router.get("/api/profile", authRequired,profile);
+router.get("/api/profile", profile);
 router.post("/api/loginUser",  loginUser);
 router.post("/api/createBook", authRequired,createBook);
 router.get("/api/getAllBooks", getAllBooks);
