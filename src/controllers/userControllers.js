@@ -126,7 +126,7 @@ export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");
-  res.json("Hola que tal");
+  res.json({ userFound });
 };
 
 export const addBook = async (req, res, next) => {

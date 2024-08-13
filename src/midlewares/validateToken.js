@@ -10,7 +10,7 @@ export const authRequired = async (req, res, next) => {
    
 
     if (!token) {
-      res.json({ message: "Los coconuts" });
+      res.json({ message: "No autorizado" });
    
 
   } else {
