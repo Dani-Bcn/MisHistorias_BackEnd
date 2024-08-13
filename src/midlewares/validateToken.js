@@ -10,11 +10,14 @@ export const authRequired = async (req, res, next) => {
    
 
     if (!token) {
-      console.log(token)
-      res.json({ message: token });
+      
+      res.json({ message: "no autorizado" });
    
 
   } else {
+
+    console.log(token)
+    res.json({ message: token });
     jwt.verify(token, TOKEN_SECRET, (error, user) => {
       if (error) {
         res.json({ message: "Error" });
