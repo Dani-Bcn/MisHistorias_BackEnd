@@ -21,7 +21,6 @@ router.put("/api/editBook/:id", authRequired,editBook);
 router.get("/api/booksUser", authRequired,booksUser);
 router.put("/api/addBook/:userId/:bookId", authRequired, addBook);
 router.post("/api/savePage",  savePages);
-router.post("/api/deleteImg", deleteImage)
-  
+router.post("/api/deleteImg", deleteImage)  
 
 export default router;
