@@ -20,6 +20,7 @@ export const createBook = async (req, res) => {
     } else {
       const newBook = new Book({
         title,
+        published:false,
         description,
         genre,
         comments:[],
@@ -37,7 +38,7 @@ export const createBook = async (req, res) => {
       });
       newBook.save();
       res.json({ newBook });
-      userFound.books.push(newBook._id);
+      userFound.books.push(newBook._id); 
       userFound.save();
     }
   } catch (error) {

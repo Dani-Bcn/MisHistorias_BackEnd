@@ -135,7 +135,7 @@ export const addBook = async (req, res, next) => {
     const user = await User.findById(userId);
     const isMatch = user.booksLibrary.includes(bookId); // Si en la array existe el elemento
     if (isMatch) {
-      res.json({ message: "Este título ya está en tu biblioteca" });
+      res.send({ message: "Este título ya está en tu biblioteca" });
     } else {
       const user = await User.findById(userId);
       user.booksLibrary.push(bookId);

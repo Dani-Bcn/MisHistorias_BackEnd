@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { string } from "zod";
+import { boolean, string } from "zod";
 
 const bookModel = new mongoose.Schema(
   {
@@ -71,6 +71,7 @@ const bookModel = new mongoose.Schema(
     imageUrl: {
       type: String,
     },
+    published:{type: Boolean},
   },
   { timestamps: true }
 );

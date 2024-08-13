@@ -14,7 +14,7 @@ app.use(cors({
   origin:"http://localhost:5173",
   credentials:true
 }));
-app.use(authRouter)
+ app.use(authRouter) 
 app.use(uploadImg)
 app.use(deleteImg)
 app.use(morgan("dev"))
