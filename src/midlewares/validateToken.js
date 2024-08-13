@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
-import { profile } from "../controllers/userControllers.js";
 
 
 export const authRequired = async (req, res, next) => {
   const { token } = req.cookies;
+
+  console.log(req.cookies)
 
  console.log(token)
    
