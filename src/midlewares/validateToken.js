@@ -6,11 +6,12 @@ import { profile } from "../controllers/userControllers.js";
 export const authRequired = async (req, res, next) => {
   const { token } = req.cookies;
 
- 
+ console.log(token)
    
 
     if (!token) {
-      res.json({ message: "No autorizado" });
+      console.log(token)
+      res.json({ message: token });
    
 
   } else {
