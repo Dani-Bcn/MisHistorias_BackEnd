@@ -3,7 +3,7 @@ import { TOKEN_SECRET } from "../config.js";
 
 
 export const authRequired = async (req, res, next) => {
-  const { token } = req.cookies;
+  /* const { token } = req.cookies;
 
   
    
@@ -14,8 +14,10 @@ export const authRequired = async (req, res, next) => {
       if (error) {
         res.json({ message: "Error" });
       }
-      req.user = user;
-      next();
+      req.user = user; 
+    
     });
-  }
+  }*/
+  next();
+
 };
