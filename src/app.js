@@ -11,7 +11,7 @@ export const app = express()
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-  origin:"https://mis-historias-front-end-seven.vercel.app",
+  origin:"http://localhost:5173",
   credentials:true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
@@ -20,8 +20,20 @@ app.use(cors({
 app.use(uploadImg)
 app.use(deleteImg)
 app.use(morgan("dev"))
-app.enable('trust proxy')
-
+app.use(
+  session({
+    secret: config.domain,
+    store: new SequelizeStore({
+      db: db.sequelize,
+      checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+      expiration: 15 * 24 * 60 * 60 * 1000, // The maximum age (in milliseconds) of a valid session.
+    }),
+    resave: false, // we support the touch method so per the express-session docs this should be set to false
+    proxy: true, // if you do SSL outside of node.
+    saveUninitialized: true,
+    cookie: { secure: true, sameSite: "none" },
+  })
+);
 
 
 
