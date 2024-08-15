@@ -21,13 +21,7 @@ app.use(uploadImg)
 app.use(deleteImg)
 app.use(morgan("dev"))
 app.use(
-  session({
-    secret: config.domain,
-    store: new SequelizeStore({
-      db: db.sequelize,
-      checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
-      expiration: 15 * 24 * 60 * 60 * 1000, // The maximum age (in milliseconds) of a valid session.
-    }),
+  session({   
     resave: false, // we support the touch method so per the express-session docs this should be set to false
     proxy: true, // if you do SSL outside of node.
     saveUninitialized: true,
