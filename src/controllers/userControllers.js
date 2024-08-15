@@ -80,10 +80,10 @@ export const loginUser = async (req, res) => {
 
     if (!isMatch) {
       res.json({ message: "Contraseña no valida" });
-    }
+    }    
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token);
-    res.send(userFound);
+    res.send(token);
   } catch (error) {
     console.log(error);
   }
