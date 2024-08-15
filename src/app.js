@@ -20,12 +20,6 @@ app.use(cors({
 app.use(uploadImg)
 app.use(deleteImg)
 app.use(morgan("dev"))
-app.use(
-  session({   
-   
-    cookie: { secure: true, sameSite: "none" },
-  })
-);
 
 
 
