@@ -15,7 +15,9 @@ app.use(cors({
   credentials:true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
+  
 }));
+app.set("trust proxy",1);
  app.use(authRouter) 
 app.use(uploadImg)
 app.use(deleteImg)
