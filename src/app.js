@@ -21,10 +21,10 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
-app.use(cors({
+/* app.use(cors({
   origin:"https://mis-historias-front-end-seven.vercel.app/",
   credentials:true
-}));
+})); */
  app.use(authRouter) 
 app.use(uploadImg)
 app.use(deleteImg)
