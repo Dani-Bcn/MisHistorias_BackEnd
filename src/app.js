@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: "https://mis-historias-front-end-seven.vercel.app",
     credentials: true,
-    secure: true,
+    secure: false,
     sameSite: "None",
   })
 );
