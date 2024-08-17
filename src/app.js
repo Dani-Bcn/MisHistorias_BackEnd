@@ -8,7 +8,12 @@ import cors from "cors";
 
 export const app = express();
 
-app.use(cookieParser());
+app.use(cookieParser(
+  {
+    secure: false,
+    sameSite: "None",
+  }
+));
 app.use(express.json());
 app.use(
   cors({
