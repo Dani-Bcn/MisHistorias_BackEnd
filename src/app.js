@@ -10,7 +10,7 @@ export const app = express();
 
 app.use(cookieParser(
   {
-    secure: false,
+    secure: true,
     sameSite: "None",
   }
 ));
