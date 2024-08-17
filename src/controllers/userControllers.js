@@ -59,8 +59,8 @@ export const registerUser = async (req, res) => {
         });
 
         const userSaved = await newUser.save();
-        const token = await createToken({ id: userSaved._id });
-        res.cookie("token", token);
+       const token = await createToken({ id: userSaved._id });
+        res.cookie("token", token); 
         res.send(userSaved);
       }
     } catch (error) {
@@ -83,7 +83,7 @@ export const loginUser = async (req, res) => {
     }    
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token);
-    res.send(token);
+    res.send(token);  
   } catch (error) {
     console.log(error);
   }
@@ -123,7 +123,8 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  const userFound = await User.findById(req.user.id)
+  console.log(res)
+  const userFound = await User.findById(res.user.id)
     .populate("books")
     .populate("booksLibrary");
    res.json({ userFound }); 

@@ -9,9 +9,9 @@ export const authRequired = async (req, res, next) => {
   } else {   
     jwt.verify(token, TOKEN_SECRET, (error, user) => {
       if (error) {
-        res.json({ message: "Error" });
+        res.json({message: "Error"});
       }
-      req.user = user;
+     res.user = user;      
       next();
     });
   }

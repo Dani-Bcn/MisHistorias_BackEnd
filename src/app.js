@@ -14,10 +14,8 @@ app.use(cors({
   origin:"https://mis-historias-front-end-seven.vercel.app",
   credentials:true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-  
+  allowedHeaders: 'Content-Type,Authorization',  
 }));
-app.set("trust proxy",1);
  app.use(authRouter) 
 app.use(uploadImg)
 app.use(deleteImg)
