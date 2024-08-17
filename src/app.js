@@ -15,12 +15,15 @@ app.use(cors({
   credentials:true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',  
+  cookie : {
+    secure: true,
+    sameSite: 'None'
+  }
 }));
  app.use(authRouter) 
 app.use(uploadImg)
 app.use(deleteImg)
 app.use(morgan("dev"))
-
 
 
 
