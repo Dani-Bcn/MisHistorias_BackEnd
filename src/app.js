@@ -11,7 +11,7 @@ export const app = express()
 app.use(cookieParser())
 app.use(express.json())
 const corsOptions = {
-  origin: 'https://mis-historias-back-end.vercel.app',
+  origin: 'https://mis-historias-front-end-seven.vercel.app',
   credentials:true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
