@@ -12,7 +12,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
   origin:"https://mis-historias-front-end-seven.vercel.app",
-  credentials:true,
+
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',  
   cookie : {
