@@ -123,7 +123,6 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  console.log(res)
   const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");

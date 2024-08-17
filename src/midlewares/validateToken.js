@@ -6,8 +6,7 @@ export const authRequired = async (req, res, next) => {
     "XSRF-TOKEN", 
     req.csrfToken(),
     {
-        secure: true, 
-        httpOnly: false, 
+        secure: false,
         sameSite: 'None',
         domain: 'https://mis-historias-front-end-seven.vercel.app'
     }
