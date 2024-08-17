@@ -2,15 +2,7 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = async (req, res, next) => {
-  const { token } = req.cookie(
-    "XSRF-TOKEN", 
-    req.csrfToken(),
-    {
-        secure: false,
-        sameSite: 'None',
-        domain: 'https://mis-historias-front-end-seven.vercel.app'
-    }
-);
+  const { token } = req.cookie();
 
   if (!token) {
     res.json({ message: "no autorizado" });
