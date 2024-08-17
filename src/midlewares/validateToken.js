@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = async (req, res, next) => {
-  const { token } = res.cookie(
+  const { token } = req.cookie(
     "XSRF-TOKEN", 
     req.csrfToken(),
     {
