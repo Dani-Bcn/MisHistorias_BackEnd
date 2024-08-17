@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = async (req, res, next) => {
-  const { token } = req.cookies();
+  const { token } = req.cookies;
 
   if (!token) {
     res.json({ message: "no autorizado" });
@@ -11,7 +11,7 @@ export const authRequired = async (req, res, next) => {
       if (error) {
         res.json({message: "Error"});
       }
-     res.user = user;      
+     req.user = user;      
       next();
     });
   }
