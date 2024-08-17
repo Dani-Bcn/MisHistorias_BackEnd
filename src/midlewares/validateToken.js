@@ -9,7 +9,7 @@ export const authRequired = async (req, res, next) => {
         secure: true, 
         httpOnly: false, 
         sameSite: 'None',
-        domain: 'mydomain.com'
+        domain: 'https://mis-historias-front-end-seven.vercel.app'
     }
 );
 
