@@ -19,6 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use((req, res, next) => {
   req.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 });
  app.use(authRouter) 
