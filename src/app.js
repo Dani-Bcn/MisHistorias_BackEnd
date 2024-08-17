@@ -11,7 +11,7 @@ export const app = express()
 app.use(cookieParser())
 app.use(express.json())
 const corsOptions = {
-  origin: 'http://localhost:8000',
+  origin: 'https://mis-historias-back-end.vercel.app',
   credentials:true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
