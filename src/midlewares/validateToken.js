@@ -7,7 +7,7 @@ export const authRequired = async (req, res, next) => {
     httpOnly: false, // la cookie no será accesible desde JavaScript en el navegador
     secure: true,   // asegura que la cookie solo se enviará a través de HTTPS
     sameSite: 'None', // necesario para permitir el uso de cookies cross-site
-   
+   domain: 'https://mis-historias-front-end-seven.vercel.app'
   });
 
   if (!token) {
