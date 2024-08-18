@@ -108,8 +108,8 @@ export const logoutUser = async (req, res) => {
 };
 
 export const editUser = async (req, res) => {
+  
   const { email } = req.body;
-
   const isMatch = await User.findOne({ email });
 
   if (isMatch) {

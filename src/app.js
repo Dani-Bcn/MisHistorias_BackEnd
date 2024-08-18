@@ -20,8 +20,7 @@ app.use(cors({
 app.use(uploadImg)
 app.use(deleteImg)
 app.use(morgan("dev"))
-
-
+app.set('trust proxy', 1);
 
 
 
