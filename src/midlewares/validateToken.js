@@ -3,13 +3,6 @@ import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = async (req, res, next) => {
  const {token} = req.cookies
-  res.cookie('token', token, {
-   
-    sameSite: 'None', // necesario para permitir el uso de cookies cross-site
-    domain: 'http://localhost:5173', // dominio donde la cookie será accesible
-    path: '/',  // ruta donde la cookie será accesible
-    expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
-  });
   res.header({"token":token});
 
   if (!token) {
