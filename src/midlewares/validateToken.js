@@ -11,7 +11,7 @@ export const authRequired = async (req, res, next) => {
     path: '/',  // ruta donde la cookie será accesible
     expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
   });
-  res.send("token");
+  res.set("token");
 
   if (!token) {
     res.json({ message: "no autorizado" });
