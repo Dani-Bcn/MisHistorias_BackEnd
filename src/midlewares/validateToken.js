@@ -20,7 +20,7 @@ export const authRequired = async (req, res, next) => {
       if (error) {
         res.json({message: "Error"});
       }
-     req.user = user;      
+     res.user = user;      
       next();
     });
   }
