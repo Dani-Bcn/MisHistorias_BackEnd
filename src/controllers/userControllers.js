@@ -70,7 +70,7 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-  const { email, password } = res.body;
+  const { email, password } = req.body;
   try {
     const userFound = await User.findOne({ email });
     if (!userFound) {
