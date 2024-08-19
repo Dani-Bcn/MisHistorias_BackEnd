@@ -82,14 +82,14 @@ export const loginUser = async (req, res) => {
       res.json({ message: "Contraseña no valida" });
     }    
     const token = await createToken({ id: userFound._id });
-    res.cookie("token", token, {
-      secure: true, // Debe ser true si estás usando sameSite: "none"
-      httpOnly: false,
+    res.cookie("token", token,  {
+      secure: true , // Debe ser true si estás usando sameSite: "none"
+     httpOnly:true,
       path: "/",
-      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
-      domain: "mis-historias-front-end-seven.vercel.app", // Dominio donde la cookie será accesible
-      expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
-    });
+     sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+      
+       expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
+    }); 
     res.send(token);  
   } catch (error) {
     console.log(error);
