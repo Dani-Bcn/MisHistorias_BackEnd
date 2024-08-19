@@ -11,12 +11,7 @@ router.post("/api/registerUser", registerUser);
 router.post("/api/logoutUser",authRequired,logoutUser);
 router.put("/api/editUser/:id", authRequired,editUser);
 router.get("/api/profile", authRequired,profile);
-router.post("/api/loginUser",  loginUser, {
-    withCredentials: true, // Esto asegura que la cookie se envíe con la solicitud
-    headers: {
-      'Content-Type': 'application/json',
-     } // Otros headers si es necesario
-    });
+router.post("/api/loginUser",  loginUser);
 router.post("/api/createBook", authRequired,createBook);
 router.get("/api/getAllBooks",getAllBooks);
 router.get("/api/getAllUsers", getAllUsers);
