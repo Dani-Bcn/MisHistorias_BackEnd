@@ -76,14 +76,14 @@ export const loginUser = async (req, res) => {
     if (!userFound) {
       res.json({ message: "Usuario no encontrado" });
     }
-    const isMatch = await Crypt.compare(password, userFound.password);
+    const isMatch = Crypt.compare(password, userFound.password);
 
     if (!isMatch) {
       res.json({ message: "Contraseña no valida" });
     }
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token, {
-      secure: false, 
+      secure: true, 
       httpOnly: false,
       path: "/",
       sameSite: "none", // necesario para permitir el uso de cookies cross-site
