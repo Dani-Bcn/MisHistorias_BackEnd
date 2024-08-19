@@ -7,6 +7,7 @@ export function createToken(payload) {
       process.env.TOKEN_SECRET, 
       {
         expiresIn: "1d",
+        algorithm: 'HS256'
       },
       (error, token) => {
         error ? reject(error) : resolve(token)
