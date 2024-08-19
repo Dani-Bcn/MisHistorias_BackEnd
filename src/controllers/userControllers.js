@@ -22,8 +22,7 @@ router.post(
   }
 );
 
-export const deleteImage = async (req, res) => {
-  //Elimina la imagen de Cloudinary cuando eliminas el libro
+export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudinary cuando eliminas el libro
   const { coco } = req.body; // coco llega como objeto, {coco:url de la imagen}, ejemplo : {coco:"https..."}
   console.log(coco);
   const publicId = extractPublicId(coco); // extractPublicId => Extae el id_publico de la imagen através de de la url de la imagen de cloundinary
@@ -37,6 +36,7 @@ export const deleteImage = async (req, res) => {
 };
 
 export const registerUser = async (req, res) => {
+  
   const { values, imageUser } = req.body;
   const { userName, lastName, email, password } = values;
 
@@ -59,8 +59,8 @@ export const registerUser = async (req, res) => {
         });
 
         const userSaved = await newUser.save();
-        const token = await createToken({ id: userSaved._id });
-        res.cookie("token", token);
+       const token = await createToken({ id: userSaved._id });
+        res.cookie("token", token); 
         res.send(userSaved);
       }
     } catch (error) {
@@ -70,17 +70,17 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.cookie;
+  const { email, password } = req.body;
   try {
     const userFound = await User.findOne({ email });
     if (!userFound) {
       res.json({ message: "Usuario no encontrado" });
     }
-    const isMatch = Crypt.compare(password, userFound.password);
+    const isMatch = await Crypt.compare(password, userFound.password);
 
     if (!isMatch) {
       res.json({ message: "Contraseña no valida" });
-    }
+    }    
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token, {
       secure: true, // Debe ser true si estás usando sameSite: "none"
@@ -90,7 +90,7 @@ export const loginUser = async (req, res) => {
       domain: "mis-historias-front-end-seven.vercel.app", // Dominio donde la cookie será accesible
       expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
     });
-   res.json(token)
+    res.send(token);  
   } catch (error) {
     console.log(error);
   }
@@ -115,6 +115,7 @@ export const logoutUser = async (req, res) => {
 };
 
 export const editUser = async (req, res) => {
+  
   const { email } = req.body;
   const isMatch = await User.findOne({ email });
 
@@ -132,7 +133,7 @@ export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");
-  res.json({ userFound });
+   res.json({ userFound }); 
 };
 
 export const addBook = async (req, res, next) => {
