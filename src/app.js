@@ -23,7 +23,7 @@ app.use(morgan("dev"))
 app.set('trust proxy', 1);
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Credentials', true);
+  res.set('Access-Control-Allow-Credentials', true);
   next();
 });
 
