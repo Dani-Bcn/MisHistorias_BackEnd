@@ -117,6 +117,7 @@ export const logoutUser = async (req, res) => {
     httpOnly: true,
 })
   res.json({ message: "Sesion cerrada" });
+  res.end()
 };
 
 export const editUser = async (req, res) => {
