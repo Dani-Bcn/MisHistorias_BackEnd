@@ -9,7 +9,7 @@ export function createToken(payload) {
         expiresIn: "1d",
       },
       (error, token) => {
-        error ? reject(error) : resolve(token);
+        error ? reject(error) : resolve(token)
       }
     );
   });

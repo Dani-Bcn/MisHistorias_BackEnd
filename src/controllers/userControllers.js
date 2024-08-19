@@ -82,7 +82,11 @@ export const loginUser = async (req, res) => {
       res.json({ message: "Contraseña no valida" });
     }    
     const token = await createToken({ id: userFound._id });
-    res.cookie("token", token);
+    res.cookie('token', token, {
+   
+      sameSite: 'None', // necesario para permitir el uso de cookies cross-site
+    
+    });
     res.send(token);  
   } catch (error) {
     console.log(error);
@@ -123,7 +127,7 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  const userFound = await User.findById(res.user.id)
+  const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");
    res.json({ userFound }); 
