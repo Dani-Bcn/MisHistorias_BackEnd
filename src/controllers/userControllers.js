@@ -91,7 +91,7 @@ export const loginUser = async (req, res) => {
 
       expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
     });
-   
+   res.json({token})
   } catch (error) {
     console.log(error);
   }
