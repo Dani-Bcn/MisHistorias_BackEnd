@@ -86,7 +86,7 @@ export const loginUser = async (req, res) => {
       secure: false, 
       httpOnly: true,
       path: "/",
-      sameSite: "None", // necesario para permitir el uso de cookies cross-site
+      sameSite: "none", // necesario para permitir el uso de cookies cross-site
     
       expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
     });
