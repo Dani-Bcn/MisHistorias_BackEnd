@@ -7,8 +7,8 @@ export const authRequired = async (req, res, next) => {
    
     
     sameSite: 'None', // necesario para permitir el uso de cookies cross-site
-    domain: 'https://mis-historias-front-end-seven.vercel.app', // dominio donde la cookie será accesible
-    path: '/',  // ruta donde la cookie será accesible
+    domain: 'https://mis-historias-back-end.vercel.app', // dominio donde la cookie será accesible
+    
     expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
   });
 
