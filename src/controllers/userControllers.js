@@ -83,13 +83,12 @@ export const loginUser = async (req, res) => {
     }
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token, {
-      secure: false, 
+      secure: true, // Debe ser true si estás usando sameSite: "none"
       httpOnly: false,
       path: "/",
-      sameSite: "none", // necesario para permitir el uso de cookies cross-site
-      domain: "https://mis-historias-front-end-seven.vercel.app", // dominio donde la cookie será accesible
-
-      expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
+      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+      domain: "mis-historias-front-end-seven.vercel.app", // Dominio donde la cookie será accesible
+      expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
     });
    res.json(token)
   } catch (error) {
