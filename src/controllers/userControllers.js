@@ -84,9 +84,9 @@ export const loginUser = async (req, res) => {
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token, {
       secure: false, 
-      httpOnly: true,
+      httpOnly: false,
       path: "/",
-      sameSite: "None", // necesario para permitir el uso de cookies cross-site
+      sameSite: "none", // necesario para permitir el uso de cookies cross-site
       domain: "mis-historias-front-end-seven.vercel.app", // dominio donde la cookie será accesible
 
       expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
