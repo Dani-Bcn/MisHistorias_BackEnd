@@ -87,8 +87,7 @@ export const loginUser = async (req, res) => {
       httpOnly: true,
       path: "/",
       sameSite: "None", // necesario para permitir el uso de cookies cross-site
-      domain: "mis-historias-back-end.vercel.app", // dominio donde la cookie será accesible
-
+    
       expires: new Date(Date.now() + 8 * 3600000), // opcional, establece la expiración de la cookie
     });
    res.json({token})
