@@ -11,11 +11,11 @@ export const app = express()
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-  origin:"https://mis-historias-front-end-seven.vercel.app",
-  credentials:true,  
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',  
-}));
+  origin: "https://mis-historias-front-end-seven.vercel.app", // Dominio permitido
+  credentials: true, // Necesario para que las cookies se envíen en solicitudes cross-site
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
+}))
  app.use(authRouter) 
 app.use(uploadImg)
 app.use(deleteImg)
