@@ -84,7 +84,7 @@ export const loginUser = async (req, res) => {
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token,  {
       secure: true , // Debe ser true si estás usando sameSite: "none"
-     httpOnly:true,
+     httpOnly:false,
       path: "/",
      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
       
@@ -110,6 +110,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
+ 
   res.clearCookie("token");
   res.json({ message: "Sesion cerrada" });
 };
