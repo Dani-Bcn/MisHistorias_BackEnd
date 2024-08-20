@@ -57,7 +57,7 @@ export const getAllBooks = async (req, res) => {
 
 export const getBook = async (req, res) => {
   const bookFound = await Book.findById(req.params.id);
-  console.log(bookFound);
+
   if (!bookFound) {
     res.json({ message: "No se han encontrado libros" });
   } else {
@@ -66,8 +66,8 @@ export const getBook = async (req, res) => {
 };
 
 export const deleteBook = async (req, res) => {
-  const userFound = await User.findById(req.user.id);
-  console.log(req.params, userFound);
+/*   const userFound = await User.findById(req.user.id); */
+
   const bookFound = await Book.findByIdAndDelete(req.params.id);
   if (!bookFound) {
     res.json({ message: "No se han encontrado libros" });
