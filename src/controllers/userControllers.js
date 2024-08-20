@@ -115,8 +115,9 @@ export const logoutUser = async (req, res) => {
     path: "/",
     sameSite: "none", // Necesario para permitir el uso de cookies cross-site
   }); */
+  res.send({ message: "Sesion cerrada" });
   res.json({ message: "Sesion cerrada" });
-  res.end();
+
 };
 
 export const editUser = async (req, res) => {
