@@ -109,11 +109,8 @@ export const getAllUsers = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
   res.cookie("token", token, {
-    secure: true, // Debe ser true si estás usando sameSite: "none"
-    httpOnly: false,
     maxAge: 0,
-    path: "/",
-    sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+    path: "/",   
   }); 
   res.send({ message: "Sesion cerrada" });
   res.json({ message: "Sesion cerrada" });
