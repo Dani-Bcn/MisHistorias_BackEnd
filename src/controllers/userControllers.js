@@ -22,7 +22,8 @@ router.post(
   }
 );
 
-export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudinary cuando eliminas el libro
+export const deleteImage = async (req, res) => {
+  //Elimina la imagen de Cloudinary cuando eliminas el libro
   const { coco } = req.body; // coco llega como objeto, {coco:url de la imagen}, ejemplo : {coco:"https..."}
   console.log(coco);
   const publicId = extractPublicId(coco); // extractPublicId => Extae el id_publico de la imagen através de de la url de la imagen de cloundinary
@@ -36,7 +37,6 @@ export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudina
 };
 
 export const registerUser = async (req, res) => {
-  
   const { values, imageUser } = req.body;
   const { userName, lastName, email, password } = values;
 
@@ -59,8 +59,8 @@ export const registerUser = async (req, res) => {
         });
 
         const userSaved = await newUser.save();
-       const token = await createToken({ id: userSaved._id });
-        res.cookie("token", token); 
+        const token = await createToken({ id: userSaved._id });
+        res.cookie("token", token);
         res.send(userSaved);
       }
     } catch (error) {
@@ -80,16 +80,15 @@ export const loginUser = async (req, res) => {
 
     if (!isMatch) {
       res.json({ message: "Contraseña no valida" });
-    }    
+    }
     const token = await createToken({ id: userFound._id });
-    res.cookie("token", token,  {
-      secure: true , // Debe ser true si estás usando sameSite: "none"
-     httpOnly:false,
+    res.cookie("token", token, {
+      secure: true, // Debe ser true si estás usando sameSite: "none"
+      httpOnly: false,
       path: "/",
-     sameSite: "none", // Necesario para permitir el uso de cookies cross-site
-    
-    }); 
-    res.send(token);  
+      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+    });
+    res.send(token);
   } catch (error) {
     console.log(error);
   }
@@ -109,17 +108,18 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-  res.cookie('token', '', {
-    domain: 'https://mis-historias-front-end-seven.vercel.app',
+  res.cookie("token", token, {
+    secure: true, // Debe ser true si estás usando sameSite: "none"
+    httpOnly: false,
     maxAge: 0,
-    overwrite: true,
+    path: "/",
+    sameSite: "none", // Necesario para permitir el uso de cookies cross-site
   });
   res.json({ message: "Sesion cerrada" });
-  res.end()
+  res.end();
 };
 
 export const editUser = async (req, res) => {
-  
   const { email } = req.body;
   const isMatch = await User.findOne({ email });
 
@@ -137,7 +137,7 @@ export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");
-   res.json({ userFound }); 
+  res.json({ userFound });
 };
 
 export const addBook = async (req, res, next) => {
