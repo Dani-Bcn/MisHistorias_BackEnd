@@ -109,9 +109,11 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
- 
-
-  res.cookie('token', {expires: new Date(0)});
+  res.cookie('cookieName', '', {
+    domain: 'https://mis-historias-front-end-seven.vercel.app',
+    maxAge: 0,
+    overwrite: true,
+  });
   res.json({ message: "Sesion cerrada" });
   res.end()
 };
