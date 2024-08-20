@@ -85,6 +85,7 @@ export const loginUser = async (req, res) => {
     res.cookie("token", token,  {
       secure: true , // Debe ser true si estás usando sameSite: "none"
      httpOnly:false,
+     maxAge: 0,
       path: "/",
      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
     
