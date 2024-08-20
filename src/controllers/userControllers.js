@@ -111,7 +111,7 @@ export const getAllUsers = async (req, res) => {
 export const logoutUser = async (req, res) => {
  
 
-  cookies.set('token', {expires: new Date(0)});
+  res.cookie(prop, '', {expires: new Date(0)});
   res.json({ message: "Sesion cerrada" });
   res.end()
 };
