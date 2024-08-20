@@ -17,7 +17,7 @@ router.get("/api/getAllBooks",getAllBooks);
 router.get("/api/getAllUsers", getAllUsers);
 router.get("/api/getBook/:id", getBook);
 router.delete("/api/deleteBook/", authRequired,deleteBook);
-router.put("/api/editBook/:id",authRequired,editBook);
+router.put("/api/editBook/:id",editBook);
 router.get("/api/booksUser", authRequired,booksUser);
 router.put("/api/addBook/:userId/:bookId", authRequired,addBook);
 router.post("/api/savePage",  authRequired,savePages);
