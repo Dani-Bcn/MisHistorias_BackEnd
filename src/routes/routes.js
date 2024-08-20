@@ -8,7 +8,7 @@ import { removeBookLibrary } from "../controllers/userControllers.js";
 const router = Router();
 router.put("/api/removeBookLibrary/:userId/:bookId", authRequired,removeBookLibrary);
 router.post("/api/registerUser", registerUser);
-router.post("/api/logoutUser",logoutUser);
+router.post("/api/logoutUser", authRequired,logoutUser);
 router.put("/api/editUser/:id", authRequired,editUser);
 router.get("/api/profile", authRequired,profile);
 router.post("/api/loginUser",  loginUser);
