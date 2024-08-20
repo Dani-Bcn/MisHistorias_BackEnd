@@ -109,7 +109,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-  res.cookie('cookieName', '', {
+  res.cookie('token', '', {
     domain: 'https://mis-historias-front-end-seven.vercel.app',
     maxAge: 0,
     overwrite: true,
