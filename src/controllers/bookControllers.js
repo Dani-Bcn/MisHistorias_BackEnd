@@ -8,7 +8,7 @@ const router = Router();
 //Eliminar libro
 export const deleteBook = async (req, res) => {
 
-  res.send(req)
+  res.send("libro eliminado")
 
      /* const bookFound = await Book.findByIdAndDelete(req.params.id);
     bookFound?console.log(bookFound):null
