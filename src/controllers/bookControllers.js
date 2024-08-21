@@ -12,14 +12,13 @@ export const deleteBook = async (req, res) => {
  
 
  
-
-     /* const bookFound = await Book.findByIdAndDelete(req.params.id);
+const bookFound = await Book.findByIdAndDelete(req.params.id);
     bookFound?console.log(bookFound):null
    if (!bookFound) {
       res.json({ message: "No se han encontrado libros" });
     } else {
       res.json({ message: "Libro eliminado" });
-    } */
+    } 
   };
 
 //Crear libro
