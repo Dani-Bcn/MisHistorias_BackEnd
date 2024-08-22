@@ -109,11 +109,8 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-  res.cookie('token', token, {
-    maxAge: 0,
-    overwrite: true,
-  });
-  res.json({ message: "Sesion cerrada" });
+ 
+  res.json({ message: "Sesión cerrada" });
   res.end()
 };
 
