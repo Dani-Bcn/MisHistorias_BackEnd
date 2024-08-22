@@ -84,9 +84,9 @@ export const loginUser = async (req, res) => {
     }    
     const token = await createToken({ id: userFound._id });
     res.cookie("token", token,  {
-      secure: false , // Debe ser true si estás usando sameSite: "none"
+      secure: true , // Debe ser true si estás usando sameSite: "none"
       
-     sameSite: "lax", // Necesario para permitir el uso de cookies cross-site
+     sameSite: "none", // Necesario para permitir el uso de cookies cross-site
     
     }); 
     res.send(token);  
