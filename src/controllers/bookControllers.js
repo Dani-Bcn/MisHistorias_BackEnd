@@ -6,12 +6,7 @@ import { Router } from "express";
 const router = Router();
 
 //Eliminar libro
-export const deleteBook = async (req, res) => {
-
-  res.json({message:"Libro elminado"})
- 
-
- 
+export const deleteBook = async (req, res) => { 
 const bookFound = await Book.findByIdAndDelete(req.params.id);
     bookFound?console.log(bookFound):null
    if (!bookFound) {
@@ -29,7 +24,6 @@ export const createBook = async (req, res) => {
   try {
     const isMatch = await Book.findOne({ title });
     const userFound = await User.findById(req.user.id);
-    console.log(isMatch);
 
     if (isMatch) {
       res.send("LIbro ya registrado");
