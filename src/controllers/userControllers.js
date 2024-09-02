@@ -5,7 +5,6 @@ import Crypt from "bcryptjs";
 import { Router } from "express";
 import { v2 as cloudinary } from "cloudinary";
 import { extractPublicId } from "cloudinary-build-url";
-import { token } from "morgan";
 const router = Router();
 
 router.post(
@@ -41,9 +40,7 @@ export const registerUser = async (req, res) => {
   const { values, imageUser } = req.body;
   const { userName, lastName, email, password } = values;
 
-  if (req.cookies.token) {
-    res.json({ message: "Ya tienes una cuenta creada" });
-  } else {
+ 
     try {
       const isMatch = await User.findOne({ email });
       console.log(isMatch);
