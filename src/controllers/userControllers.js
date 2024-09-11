@@ -113,7 +113,7 @@ export const getAllUsers = async (req, res) => {
       
      sameSite: "none", // Necesario para permitir el uso de cookies cross-site 
   });
-  res.sendStatus(200);
+  res.send("Sesión cerrada");
 }; 
 export const editUser = async (req, res) => {
   
