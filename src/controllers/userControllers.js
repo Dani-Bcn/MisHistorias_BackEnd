@@ -106,15 +106,15 @@ export const getAllUsers = async (req, res) => {
     console.log(error);
   }
 };
-export const logoutUser = async (req, res) => {
+/* export const logoutUser = async (req, res) => {
   res.cookie("token", "", {
     expires: new Date(0),
-   /*  secure: true , // Debe ser true si estás usando sameSite: "none"
+    secure: true , // Debe ser true si estás usando sameSite: "none"
       
-     sameSite: "none", // Necesario para permitir el uso de cookies cross-site */
+     sameSite: "none", // Necesario para permitir el uso de cookies cross-site 
   });
   res.sendStatus(200);
-};
+}; */
 export const editUser = async (req, res) => {
   
   const { email } = req.body;
