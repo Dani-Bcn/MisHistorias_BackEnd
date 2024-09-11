@@ -46,6 +46,8 @@ export const registerUser = async (req, res) => {
       console.log(isMatch);
       if (isMatch) {
         res.json({ message: "Email ya registrado" });
+        res.send("Email ya registrado" );
+        
       } else {
         const passwordHash = await Crypt.hash(password, 10);
         const newUser = new User({
@@ -104,12 +106,12 @@ export const getAllUsers = async (req, res) => {
     console.log(error);
   }
 };
-
 export const logoutUser = async (req, res) => {
- 
-  res.json({ message: "Sesión cerrada" });
+  res.cookie("token", "", {
+    expires: new Date(0),
+  });
+  res.sendStatus(200);
 };
-
 export const editUser = async (req, res) => {
   
   const { email } = req.body;
