@@ -67,7 +67,6 @@ export const getAllBooks = async (req, res) => {
 
 export const getBook = async (req, res) => {
   const bookFound = await Book.findById(req.params.id);
-
   if (!bookFound) {
     res.json({ message: "No se han encontrado libros" });
   } else {
