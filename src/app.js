@@ -11,9 +11,11 @@ export const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
+//"https://mis-historias-front-end-seven.vercel.app", // Dominio permitido
 app.use(
   cors({
-    origin: "https://mis-historias-front-end-seven.vercel.app", // Dominio permitido
+    origin: "https://mis-historias-front-end-seven.vercel.app",
+    
     credentials: true, // Necesario para que las cookies se envíen en solicitudes cross-site
     methods: ["GET", "POST", "PUT", "DELETE", "delete"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
