@@ -10,7 +10,8 @@ export const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-
+ 
+//"http://localhost:5173"//
 //"https://mis-historias-front-end-seven.vercel.app", // Dominio permitido
 app.use(
   cors({
