@@ -22,6 +22,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
   })
 );
+app.use(cors({
+  origin: 'https://mis-historias-front-end-seven.vercel.app'
+}));
 app.use(authRouter);
 app.use(uploadImg);
 app.use(deleteImg);
