@@ -5,25 +5,15 @@ import { Router } from "express";
 
 const router = Router();
 
-//Eliminar libro
-export const deleteBook = async (req, res) => { 
-const bookFound = await Book.findByIdAndDelete(req.params.id);
-    bookFound?console.log(bookFound):null
-   if (!bookFound) {
-      res.json({ message: "No se han encontrado libros" });
-    } else {
-      res.json({ message: "Libro eliminado" });
-    } 
-  };
-
-//Crear libro
 export const createBook = async (req, res) => {
   const { values, imageBook } = req.body;
   const { title, description, genre } = values;
   console.log(req.user);
   try {
+
     const isMatch = await Book.findOne({ title });
     const userFound = await User.findById(req.user.id);
+    console.log(isMatch);
 
     if (isMatch) {
       res.send("LIbro ya registrado");
@@ -67,10 +57,22 @@ export const getAllBooks = async (req, res) => {
 
 export const getBook = async (req, res) => {
   const bookFound = await Book.findById(req.params.id);
+  console.log(bookFound);
   if (!bookFound) {
     res.json({ message: "No se han encontrado libros" });
   } else {
     res.json(bookFound);
+  }
+};
+
+export const deleteBook = async (req, res) => {
+  const userFound = await User.findById(req.user.id);
+  console.log(req.params, userFound);
+  const bookFound = await Book.findByIdAndDelete(req.params.id);
+  if (!bookFound) {
+    res.json({ message: "No se han encontrado libros" });
+  } else {
+    res.json({ message: "Libro eliminado" });
   }
 };
 

@@ -13,21 +13,14 @@ app.use(express.json());
  
 //"http://localhost:5173"//
 //"https://mis-historias-front-end-seven.vercel.app", // Dominio permitido
-app.use(
-  cors({
-    origin: "https://mis-historias-front-end-seven.vercel.app",
-    
-    credentials: true, // Necesario para que las cookies se envíen en solicitudes cross-site
-    methods: ["GET", "POST", "PUT", "DELETE", "delete"], // Métodos permitidos
-    allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
-  })
-);
+app.use(cors({
+  origin:"https://mis-historias-front-end-seven.vercel.app",
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] ,// Allow these headers
+  credentials: true,
+}));
 app.use(authRouter);
 app.use(uploadImg);
 app.use(deleteImg);
 app.use(morgan("dev"));
 app.set("trust proxy", 1);
-app.use((req, res, next) => {
-  res.set("Access-Control-Allow-Credentials", true);
-  next();
-});
