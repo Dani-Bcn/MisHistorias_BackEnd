@@ -14,7 +14,7 @@ app.use(express.json());
 //"http://localhost:5173"//
 //"https://mis-historias-front-end-seven.vercel.app", // Dominio permitido
 app.use(cors({
-  origin:"https://mis-historias-front-end-seven.vercel.app/",
+  origin:"https://mis-historias-front-end-seven.vercel.app",
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'] ,// Allow these headers
   credentials: true,
