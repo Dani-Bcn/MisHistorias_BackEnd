@@ -9,8 +9,8 @@ export const createBook = async (req, res) => {
   const { values, imageBook } = req.body;
   const { title, description, genre } = values;
   console.log(req.user);
-  try {
 
+  try {
     const isMatch = await Book.findOne({ title });
     const userFound = await User.findById(req.user.id);
     console.log(isMatch);

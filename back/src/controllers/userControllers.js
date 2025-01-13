@@ -67,19 +67,24 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password);
+ 
   try {
+   
     const userFound = await User.findOne({ email });
     if (!userFound) {
       res.json({ message: "Usuario no encontrado" });
     }
+
     const isMatch = await Crypt.compare(password, userFound.password);
 
     if (!isMatch) {
       res.json({ message: "Contraseña no valida" });
     }    
     const token = await createToken({ id: userFound._id });
+ 
     res.cookie("token", token);
-    res.send(token);  
+    res.send({token,userFound});  
   } catch (error) {
     console.log(error);
   }
