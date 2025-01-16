@@ -2,12 +2,13 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = async (req, res, next) => {
- const {token} = req.cookies
+ const {token} = await req.cookies
 
-  res.header({"token":token});
+  await  res.header({"token":token});
+   
 try {
-  if (!token) {
-    res.json({ message: "no autorizado" });
+    if (!token) {
+     await  res.json({ message: "no autorizado" });
   } else {   
     jwt.verify(token, TOKEN_SECRET, (error, user) => {
       if (error) {
