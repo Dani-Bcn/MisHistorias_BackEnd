@@ -7,6 +7,7 @@ export const authRequired = async (req, res, next) => {
   await  res.header({"token":token});
    
 try {
+  console.log(token);
     if (!token) {
      await  res.json({ message: "no autorizado" });
   } else {   
