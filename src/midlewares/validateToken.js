@@ -5,7 +5,7 @@ export const authRequired = async (req, res, next) => {
  const {token} = await req.cookies
 
   await  res.header({"token":token});
-  res.send(token); 
+  res.send("token",token); 
 /* try {
   
     if (!token) {
