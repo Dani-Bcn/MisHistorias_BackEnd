@@ -67,7 +67,7 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
+  
  
   try {
    
@@ -84,7 +84,7 @@ export const loginUser = async (req, res) => {
     const token = await createToken({ id: userFound._id });
  
     res.cookie("token", token);
-    res.send({token,userFound});  
+   res.send("Login exitoso");
   } catch (error) {
     console.log(error);
   }
