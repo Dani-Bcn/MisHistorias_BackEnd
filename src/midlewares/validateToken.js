@@ -2,19 +2,14 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = async (req, res, next) => {
- const {token} = req.cookies
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, TOKEN_SECRET);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Token no válido" });
+}
 
-  res.header({"token":token});
 
-  if (!token) {
-    res.json({ message: "no autorizado" });
-  } else {   
-    jwt.verify(token, TOKEN_SECRET, (error, user) => {
-      if (error) {
-        res.json({message: "Error"});
-      }
-     req.user = user;      
-      next();
-    });
-  }
 };
