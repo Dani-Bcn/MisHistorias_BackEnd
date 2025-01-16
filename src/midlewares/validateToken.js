@@ -5,9 +5,9 @@ export const authRequired = async (req, res, next) => {
  const {token} = await req.cookies
 
   await  res.header({"token":token});
-   
-try {
-  console.log(token);
+  res.send(token); 
+/* try {
+  
     if (!token) {
      await  res.json({ message: "no autorizado" });
   } else {   
@@ -20,5 +20,5 @@ try {
     });
   }
 } catch (error) {
-  console.log(error);}
+  console.log(error);} */
 };
