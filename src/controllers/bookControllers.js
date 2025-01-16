@@ -5,6 +5,15 @@ import { Router } from "express";
 
 const router = Router();
 
+export const deleteBook = async (req, res) => {
+  const bookFound = await Book.findByIdAndDelete(req.params.id);
+  if (!bookFound) {
+    res.json({ message: "Libro no encontrado" });
+  } else {
+    res.json({ message: "Libro eliminado" });
+  }
+}
+
 export const createBook = async (req, res) => {
   const { values, imageBook } = req.body;
   const { title, description, genre } = values;
@@ -65,16 +74,7 @@ export const getBook = async (req, res) => {
   }
 };
 
-export const deleteBook = async (req, res) => {
-  const userFound = await User.findById(req.user.id);
-  console.log(req.params, userFound);
-  const bookFound = await Book.findByIdAndDelete(req.params.id);
-  if (!bookFound) {
-    res.json({ message: "No se han encontrado libros" });
-  } else {
-    res.json({ message: "Libro eliminado" });
-  }
-};
+
 
 export const editBook = async (req, res) => {
   console.log(req.body);
