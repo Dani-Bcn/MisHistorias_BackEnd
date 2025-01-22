@@ -124,7 +124,13 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  res.send(req);
+  res.send(req.user);
+  /* try {
+    const user = await User.findById(id);
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+  } */
 }
 
 export const addBook = async (req, res, next) => {
