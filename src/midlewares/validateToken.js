@@ -6,9 +6,9 @@ export const authRequired = async (req, res, next) => {
   
  
 
-  return res.status(200).json({ message:"token", token });
-  
-
+  await  res.status(200).json({ message:"token", token });
+  await  next(); 
+/* 
   if (!token) {
     return res.status(401).json({ message: "No autorizado" });
   }
@@ -16,7 +16,7 @@ export const authRequired = async (req, res, next) => {
     if (err) {
       return res.status(403).json({ message: "Token invalido" });
     }
-    req.user = user;
-    next(); 
-  });
+    req.user = user; 
+   
+  });*/
 };
