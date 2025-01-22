@@ -6,7 +6,7 @@ export const authRequired = (req, res, next) => {
   res.send(token);
   next();
 
-  /* 
+  
 
   if (!token) {
     return res.status(401).json({ message: "No autorizado" });
@@ -17,5 +17,5 @@ export const authRequired = (req, res, next) => {
     }
     req.user = user;
     next(); 
-  });*/
+  });
 };
