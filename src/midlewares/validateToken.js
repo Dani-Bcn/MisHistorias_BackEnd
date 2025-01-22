@@ -3,9 +3,10 @@ import { TOKEN_SECRET } from "../config.js";
 
 export const authRequired = (req, res, next) => {
   const token = req.cookies.token;
-  res.send(token);
+  
  
 
+  return res.status(200).json({ message: token });
   
 
   if (!token) {
