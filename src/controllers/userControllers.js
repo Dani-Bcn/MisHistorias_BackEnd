@@ -64,31 +64,32 @@ export const registerUser = async (req, res) => {
       console.log(error);
     }
   }
-
-export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const userFound = await User.findOne({ email });
+      if (!userFound) {
+        res.json({ message: "Usuario no encontrado" });
+      }
+      const isMatch = await Crypt.compare(password, userFound.password);
   
- 
-  try {
-   
-    const userFound = await User.findOne({ email });
-    if (!userFound) {
-      res.json({ message: "Usuario no encontrado" });
+      if (!isMatch) {
+        res.json({ message: "Contraseña no valida" });
+      }    
+      const token = await createToken({ id: userFound._id });
+      res.cookie("token", token,  {
+        secure: true , // Debe ser true si estás usando sameSite: "none"
+       httpOnly:true,
+        path: "/",
+       sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+        
+         expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
+      }); 
+      res.send(token);  
+    } catch (error) {
+      console.log(error);
     }
-
-    const isMatch = await Crypt.compare(password, userFound.password);
-
-    if (!isMatch) {
-      res.json({ message: "Contraseña no valida" });
-    }    
-    const token = await createToken({ id: userFound._id });
- 
-    res.cookie("token", token);
-   res.send("Login exitoso");
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
 export const getAllUsers = async (req, res) => {
   try {
