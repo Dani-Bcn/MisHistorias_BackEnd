@@ -124,7 +124,7 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  res.send(req.user);
+  res.send("Coco");
 }
 
 export const addBook = async (req, res, next) => {
