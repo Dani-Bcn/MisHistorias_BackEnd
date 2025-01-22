@@ -124,12 +124,14 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  const userFound = await User.findById(req.user.id)
-    .populate("books")
-    .populate("booksLibrary");
-   res.json({ userFound });
-   res.send(userFound); 
-};
+  const { id } = req.user;
+  try {
+    const user = await User.findById(id);
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const addBook = async (req, res, next) => {
   const { userId, bookId } = req.params;
