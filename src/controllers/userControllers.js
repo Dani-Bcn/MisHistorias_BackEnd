@@ -124,7 +124,7 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  res.send(req.user);
+  res.send(req);
   /* try {
     const user = await User.findById(id);
     res.send(user);
