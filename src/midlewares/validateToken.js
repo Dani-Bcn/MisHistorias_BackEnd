@@ -6,7 +6,7 @@ export const authRequired = async (req, res, next) => {
   
  
 
-  return res.status(200).json({ message: token });
+  return res.status(200).json({ message:"token", token });
   
 
   if (!token) {
