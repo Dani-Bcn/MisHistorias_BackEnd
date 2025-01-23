@@ -125,10 +125,16 @@ export const editUser = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
+  const token = req.cookies.token;
+ 
+  if (!token) {
+    res.json({ message: "no autorizado" });
+  } else {
   const userFound = await User.findById(req.user.id)
     .populate("books")
     .populate("booksLibrary");
    res.json({ userFound }); 
+  }
 };
 
 export const addBook = async (req, res, next) => {
