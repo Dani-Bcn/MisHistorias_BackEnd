@@ -22,7 +22,8 @@ router.post(
   }
 );
 
-export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudinary cuando eliminas el libro
+export const deleteImage = async (req, res) => {
+  //Elimina la imagen de Cloudinary cuando eliminas el libro
   const { coco } = req.body; // coco llega como objeto, {coco:url de la imagen}, ejemplo : {coco:"https..."}
   console.log(coco);
   const publicId = extractPublicId(coco); // extractPublicId => Extae el id_publico de la imagen através de de la url de la imagen de cloundinary
@@ -36,60 +37,59 @@ export const deleteImage = async (req, res) => { //Elimina la imagen de Cloudina
 };
 
 export const registerUser = async (req, res) => {
-  
   const { values, imageUser } = req.body;
   const { userName, lastName, email, password } = values;
 
-    try {
-      const isMatch = await User.findOne({ email });
-      console.log(isMatch);
-      if (isMatch) {
-        res.json({ message: "Email ya registrado" });
-      } else {
-        const passwordHash = await Crypt.hash(password, 10);
-        const newUser = new User({
-          userName,
-          lastName,
-          email,
-          password: passwordHash,
-          imageUserUrl: imageUser,
-        });
+  try {
+    const isMatch = await User.findOne({ email });
+    console.log(isMatch);
+    if (isMatch) {
+      res.json({ message: "Email ya registrado" });
+    } else {
+      const passwordHash = await Crypt.hash(password, 10);
+      const newUser = new User({
+        userName,
+        lastName,
+        email,
+        password: passwordHash,
+        imageUserUrl: imageUser,
+      });
 
-        const userSaved = await newUser.save();
-       const token = await createToken({ id: userSaved._id });
-        res.cookie("token", token); 
-        res.send(userSaved);
-      }
-    } catch (error) {
-      console.log(error);
+      const userSaved = await newUser.save();
+      const token = await createToken({ id: userSaved._id });
+      res.cookie("token", token);
+      res.send(userSaved);
     }
+  } catch (error) {
+    console.log(error);
   }
-  export const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-    try {
-      const userFound = await User.findOne({ email });
-      if (!userFound) {
-        res.json({ message: "Usuario no encontrado" });
-      }
-      const isMatch = await Crypt.compare(password, userFound.password);
-  
-      if (!isMatch) {
-        res.json({ message: "Contraseña no valida" });
-      }    
-      const token = await createToken({ id: userFound._id });
-      res.cookie("token", token,  {
-        secure: true , // Debe ser true si estás usando sameSite: "none"
-       httpOnly:true,
-        path: "/",
-       sameSite: "none", // Necesario para permitir el uso de cookies cross-site
-        
-         expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
-      }); 
-      res.send(token);  
-    } catch (error) {
-      console.log(error);
+};
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userFound = await User.findOne({ email });
+    if (!userFound) {
+      res.json({ message: "Usuario no encontrado" });
     }
-  };
+    const isMatch = await Crypt.compare(password, userFound.password);
+
+    if (!isMatch) {
+      res.json({ message: "Contraseña no valida" });
+    }
+    const token = await createToken({ id: userFound._id });
+    res.cookie("token", token, {
+      secure: true, // Debe ser true si estás usando sameSite: "none"
+      httpOnly: true,
+      path: "/",
+      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+
+      expires: new Date(Date.now() + 8 * 3600000), // Opcional, establece la expiración de la cookie
+    });
+    res.send(token);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -105,12 +105,14 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token"),
+    {
+      secure: true, // Debe ser true si estás usando sameSite: "none"
+    };
   res.json({ message: "Sesion cerrada" });
 };
 
 export const editUser = async (req, res) => {
-  
   const { email } = req.body;
   const isMatch = await User.findOne({ email });
 
@@ -126,14 +128,14 @@ export const editUser = async (req, res) => {
 
 export const profile = async (req, res) => {
   const token = req.cookies.token;
- 
+
   if (!token) {
     res.json({ message: "no autorizado" });
   } else {
-  const userFound = await User.findById(req.user.id)
-    .populate("books")
-    .populate("booksLibrary");
-   res.json({ userFound }); 
+    const userFound = await User.findById(req.user.id)
+      .populate("books")
+      .populate("booksLibrary");
+    res.json({ userFound });
   }
 };
 
