@@ -108,6 +108,10 @@ export const logoutUser = async (req, res) => {
   res.clearCookie("token"),
     {
       secure: true, // Debe ser true si estás usando sameSite: "none"
+      httpOnly: true,
+      path: "/",
+      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
+// Debe ser true si estás usando sameSite: "none"
     };
   res.json({ message: "Sesion cerrada" });
 };
