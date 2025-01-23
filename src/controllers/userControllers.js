@@ -105,15 +105,13 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const logoutUser = async (req, res) => {
-  res.clearCookie("token"),
-    {
-      secure: true, // Debe ser true si estás usando sameSite: "none"
-      httpOnly: true,
-      path: "/",
-      sameSite: "none", // Necesario para permitir el uso de cookies cross-site
-// Debe ser true si estás usando sameSite: "none"
-    };
-  res.json({ message: "Sesion cerrada" });
+  res.clearCookie("token", {
+    secure: true, // Debe ser true si estás usando sameSite: "none"
+    httpOnly: true,
+    path: "/", // Asegúrate de que coincida con la ruta usada en la cookie original
+    sameSite: "none", // Necesario si estás haciendo logout desde un dominio cruzado
+  });
+  res.json({ message: "Sesión cerrada" });
 };
 
 export const editUser = async (req, res) => {
