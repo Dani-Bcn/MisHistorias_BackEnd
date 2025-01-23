@@ -37,6 +37,7 @@ export const createBook = async (req, res) => {
           userName: userFound.userName,
           lastName: userFound.lastName,
           userId: userFound._id,
+          imageUserUrl: userFound.imageUserUrl,
         },
         rating:0,
         numVotes:0,

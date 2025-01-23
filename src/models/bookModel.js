@@ -39,6 +39,9 @@ const bookModel = new mongoose.Schema(
         ref: "gmail",
         require: true,
       },
+      imageUserUrl:{
+        type:String
+      }
     },
     rating: {
       type: Number,
